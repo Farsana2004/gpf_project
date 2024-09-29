@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}GPF Form{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h3>General Provident Fund (GPF) Form</h3>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{% url 'gpf_form' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.name.id_for_label }}">Name</label>
+                {{ form.name|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.permanent_address.id_for_label }}">Permanent Address</label>
+                {{ form.permanent_address|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                {{ form.phone_number|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.marital_status.id_for_label }}">Marital Status</label>
+                {{ form.marital_status|add_class:"form-control" }}
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Add Nominee</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

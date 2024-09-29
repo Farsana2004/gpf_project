@@ -1,0 +1,65 @@
+<!-- gpf/templates/gpf/pdf_template.html -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        h3 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3>Form B</h3>
+    <h4>FORM OF NOMINATION</h4>
+    <p>[See Rule 5(1)]</p>
+
+    <p>I, {{ subscriber_name }} hereby nominate the person(s) mentioned below to receive the amount that may stand to my credit in the Fund in the event of my death before that amount has become payable or having become payable, has not been paid.</p>
+    <p>I also declare that my marital status is {{ marital_status }}.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name, full permanent address, and aadhar no. of nominees</th>
+                <th>Relationship with the subscriber</th>
+                <th>Age</th>
+                <th>Share payable to each in percentage</th>
+                <th>Contingencies on the happening of which nomination shall become invalid</th>
+                <th>Name, address, aadhar no., relationship, and age of the person to whom the right of the nominee shall pass in the event of his predeceasing the subscriber</th>
+                <th>Name, address, and aadhar No. of the person to whom share is to be paid on behalf of minor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nominee in nominees %}
+            <tr>
+                <td>{{ nominee.name }}<br>{{ nominee.permanent_address }}<br>{{ nominee.aadhar_no }}</td>
+                <td>{{ nominee.relationship }}</td>
+                <td>{{ nominee.age }}</td>
+                <td>{{ nominee.share_percentage }}%</td>
+                <td>{{ nominee.contingencies }}</td>
+                <td>{{ nominee.nominee_right_pass }}</td>
+                <td>{{ nominee.minor_details }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p>Place: {{ place }}</p>
+    <p>Date: {{ date }}</p>
+
+    <p>Name, designation, office address, PEN, and signature of the subscriber: {{ subscriber_signature }}</p>
+</body>
+</html>
